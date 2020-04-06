@@ -48,7 +48,6 @@ export class MapComponent implements OnInit {
     });
   }
 
-
   getLocation(){
     let data = this.forma.value;
     if(data.lat && data.lng) {
@@ -63,6 +62,25 @@ export class MapComponent implements OnInit {
         }
       });
     }
+  }
+
+  getInfo(event: any){
+    this.lat = event.coords.lat;
+    this.lng = event.coords.lng;
+    let latlng = `${this.lat},${this.lng}`;
+    this.geodecode.getInfoLocation(latlng).subscribe((address: any) => {
+      let adr = address.split(',');
+      let cp = adr.length === 6 ? adr[3].slice(1,6) : adr[4].slice(1,6);
+      let estado = adr.length === 6 ? adr[3].slice(7) : adr[4].slice(7);
+      this.fo.calle = adr[0];
+      this.fo.municipio = adr[2];
+      this.fo.colonia = adr[1];
+      this.fo.estado = estado;
+      this.fo.cp = cp;
+      this.fo.lat = this.lat;
+      this.fo.lng = this.lng;
+      this.createForm();
+    });
   }
 
 
