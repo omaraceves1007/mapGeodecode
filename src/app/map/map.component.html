@@ -1,0 +1,70 @@
+<div style="width: 50%; display: inline-block; margin-top: 15px;">
+
+    <form [formGroup]="forma" autocomplete="off" (ngSubmit)="getLocation()">
+        <div>
+            <label>Calle / Tramo Carretero</label>
+            <input formControlName="calle" type="text">
+        </div>
+        <div>
+            <label>Num. Ext</label>
+            <input formControlName="ext" type="number">
+        </div>
+        <div>
+            <label>Num. Int</label>
+            <input formControlName="int" type="number">
+        </div>
+        <div>
+            <label>Colonia / Localidad</label>
+            <input formControlName="colonia" type="text">
+        </div>
+        <div>
+            <label>Entidad Federativa</label>
+            <input formControlName="estado" type="text">
+        </div>
+        <div>
+            <label>CP</label>
+            <input formControlName="cp" type="number" max="99999">
+        </div>
+        <div>
+            <label>Municipio / Demarcación Territorial</label>
+            <input formControlName="municipio" type="text">
+        </div>
+        <div>
+            <label>Referencias??</label>
+            <input formControlName="ref" type="text">
+        </div>
+        <hr>
+        <div>
+            <label>Latitud</label>
+            <input formControlName="lat" type="number">
+        </div>
+        <div>
+            <label>Longitud</label>
+            <input formControlName="lng" type="number">
+        </div>
+        <div>
+            <button type="submit"> Buscar </button>
+        </div>
+
+    </form>
+</div>
+<div style="width: 50%; display: inline-block; margin-top: 15px;">
+    <agm-map [latitude]="lat" [longitude]="lng" style="height: 300px;" [zoom]="zoom">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+</div>
+
+<!-- <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClicked($event)" style="height: 300px;">
+
+    <agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+
+        <agm-info-window>
+            <strong>InfoWindow content</strong>
+        </agm-info-window>
+
+    </agm-marker>
+
+    <agm-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="5000" [fillColor]="'red'" [circleDraggable]="true" [editable]="true">
+    </agm-circle>
+
+</agm-map> -->
